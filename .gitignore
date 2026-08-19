@@ -1,0 +1,20 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+
+# Terraform plans
+*.tfplan
+plan.txt
+
+# Terraform lock file is safe to commit
+# .terraform.lock.hcl
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
