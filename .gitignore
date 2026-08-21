@@ -18,3 +18,5 @@ plan.txt
 .DS_Store
 .vscode/
 .idea/
+argo-helm/
+argo-cd-local/
