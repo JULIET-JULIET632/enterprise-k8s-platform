@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo
+  labels:
+    app: demo
+spec:
+  replicas: 4
+
+  revisionHistoryLimit: 3
+
+  selector:
+    matchLabels:
+      app: demo
+
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+
+  strategy:
+    canary:
+      stableService: demo-stable
+      canaryService: demo-canary
+
+      steps:
+        - setWeight: 25
+        - pause:
+            duration: 2m
+
+        - setWeight: 50
+        - pause:
+            duration: 2m
+
+        - setWeight: 100
