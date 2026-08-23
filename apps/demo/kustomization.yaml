@@ -5,3 +5,4 @@ resources:
   - rollout.yaml
   - stable-service.yaml
   - canary-service.yaml
+  - analysis/error-rate.yaml

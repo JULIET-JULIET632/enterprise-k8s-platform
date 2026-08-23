@@ -6,12 +6,33 @@ metadata:
     app: demo
 spec:
   replicas: 4
-
   revisionHistoryLimit: 3
 
   selector:
     matchLabels:
       app: demo
+
+  strategy:
+    canary:
+      canaryService: demo-canary
+      stableService: demo-stable
+
+      steps:
+        - setWeight: 25
+        - pause:
+            duration: 30s
+        - analysis:
+            templates:
+              - templateName: demo-error-rate
+
+        - setWeight: 50
+        - pause:
+            duration: 30s
+        - analysis:
+            templates:
+              - templateName: demo-error-rate
+
+        - setWeight: 100
 
   template:
     metadata:
@@ -24,19 +45,3 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
-
-  strategy:
-    canary:
-      stableService: demo-stable
-      canaryService: demo-canary
-
-      steps:
-        - setWeight: 25
-        - pause:
-            duration: 2m
-
-        - setWeight: 50
-        - pause:
-            duration: 2m
-
-        - setWeight: 100
