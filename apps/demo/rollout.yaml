@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: enterprise-demo
-          image: juliet237/enterprise-demo:1.0.2
+          image: juliet237/enterprise-demo:1.0.3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
