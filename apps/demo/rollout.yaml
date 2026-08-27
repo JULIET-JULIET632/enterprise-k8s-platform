@@ -40,8 +40,8 @@ spec:
         app: demo
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.27.1-alpine
+        - name: enterprise-demo
+          image: juliet237/enterprise-demo:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 3000
