@@ -10,6 +10,7 @@ spec:
     repoURL: https://github.com/JULIET-JULIET632/enterprise-k8s-platform.git
     targetRevision: main
     path: apps/demo
+    kustomize: {}
 
   destination:
     server: https://kubernetes.default.svc
@@ -19,3 +20,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
